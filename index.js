@@ -19,6 +19,9 @@ import { VuetifyDateAdapter } from 'vuetify/labs/date/adapters/vuetify';
 import { appMsgArgs } from "./components/AppMsg.vue";
 import moment from "moment";
 moment.locale("ru");
+moment.prototype.fromSql = s => {
+    return (!!s) ? moment(s, s.length < 11 ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : null;
+};
 
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
