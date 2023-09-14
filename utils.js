@@ -32,9 +32,14 @@ const empty = val => {
     return true;
 };
 
+const phpdate2m = s => {
+    return empty(s) ? null : $moment(s, 'YYYY-MM-DD HH:mm:ss');
+};
+
 export {
     NULL_ID,
     MODES,
     MONTHS,
-    empty
+    empty,
+    phpdate2m
 }
