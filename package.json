@@ -9,7 +9,7 @@
     "jquery": "^3.7.0",
     "moment": "^2.29.4",
     "vue": "^3.3.4",
-    "vuetify": "3.3.16"
+    "vuetify": "3.3.19"
   },
   "devDependencies": {},
   "description": "app extension",

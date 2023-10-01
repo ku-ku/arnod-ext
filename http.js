@@ -41,6 +41,11 @@ export function api(opts){
         }
     }
     
+    opts.onResponseError = e => {
+        api.$errm = e.response?._data?.error;
+    };
+    api.$errm = undefined;
+    
     return $fetch(url, opts);
 }   //api
 

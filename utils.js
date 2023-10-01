@@ -36,10 +36,16 @@ const phpdate2m = s => {
     return empty(s) ? null : $moment(s, 'YYYY-MM-DD HH:mm:ss');
 };
 
+const date2php = (d, timed = false) => {
+    return (d === null) ? null : $moment(d).format(timed ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
+};
+
+
 export {
     NULL_ID,
     MODES,
     MONTHS,
     empty,
+    date2php,
     phpdate2m
 }

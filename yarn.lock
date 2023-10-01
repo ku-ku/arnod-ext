@@ -3,24 +3,24 @@
 
 
 "@babel/parser@^7.20.15", "@babel/parser@^7.21.3":
-  version "7.22.5"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.5.tgz#721fd042f3ce1896238cf1b341c77eb7dee7dbea"
-  integrity sha512-DFZMC9LJUG9PLOclRC32G63UXwzqS2koQC8dkx+PLdmt1xSePYpbT/NbsrJy8Q/muXz7o/h/d4A7Fuyixm559Q==
+  version "7.23.0"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.23.0.tgz#da950e622420bf96ca0d0f2909cdddac3acd8719"
+  integrity sha512-vvPKKdMemU85V9WE/l5wZEmImpCtLqbnTvqDS2U1fJ96KrxoW7KrXhNsNCblQlg8Ck4b85yxdTyelsMUgFUXiw==
 
-"@jridgewell/sourcemap-codec@^1.4.13":
+"@jridgewell/sourcemap-codec@^1.4.15":
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
 
 "@maskito/core@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@maskito/core/-/core-1.2.0.tgz#4b20fe1cfae40d4404ec209cfcd7f463e0160500"
-  integrity sha512-RFSydWYujxbVBbMzQVZ0zR77ROY3MbcuyKFWLomJWw3rDujl65M2ppz5KMeDSogAGkKnqzWudozjmBAQf2DgcA==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@maskito/core/-/core-1.7.0.tgz#e486ca1db2219f03beee5085c362688226fbaeec"
+  integrity sha512-sjdv1MSJnWWor/Qy1u1+ZZtqejzfVt6zqMUfy5RToEPZSBWlsCg1JSfjRu9WRb3yirpZnj3j80JkTGCicFrvuw==
 
 "@maskito/kit@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@maskito/kit/-/kit-1.2.0.tgz#4f65bbd7faf157cd9c420ccd19ec0c96ed652a60"
-  integrity sha512-sMUZ3vMp3RCAcw+H/TuxyrJDgz6J5TTUCc+2/inTCE1gr33FsmhzLqoi5PaYrD146VcOKdtAxd3NJ1RK/g1ZHw==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@maskito/kit/-/kit-1.7.0.tgz#0a0085836b64d1813ac465971b23f9901337d172"
+  integrity sha512-LX/ngWFnPKWnQfvU9m5fss8NIBO261DlQdXOtlbhoXgyscVoR8RVeUHRVuRKEhJgd1I+dvlP1vUxms2qltFTjw==
 
 "@mdi/font@7.2.96":
   version "7.2.96"
@@ -128,16 +128,16 @@ estree-walker@^2.0.2:
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
 
 jquery@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
-  integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
+  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 magic-string@^0.30.0:
-  version "0.30.0"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.0.tgz#fd58a4748c5c4547338a424e90fa5dd17f4de529"
-  integrity sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==
+  version "0.30.3"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.3.tgz#403755dfd9d6b398dfa40635d52e96c5ac095b85"
+  integrity sha512-B7xGbll2fG/VjP+SWg4sX3JynwIU0mjoTc6MPpKNuIvftk6u6vqhDnk1R80b8C2GBR6ywqy+1DcKBrevBg+bmw==
   dependencies:
-    "@jridgewell/sourcemap-codec" "^1.4.13"
+    "@jridgewell/sourcemap-codec" "^1.4.15"
 
 moment@^2.29.4:
   version "2.29.4"
@@ -155,9 +155,9 @@ picocolors@^1.0.0:
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
 postcss@^8.1.10:
-  version "8.4.24"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
-  integrity sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==
+  version "8.4.30"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.30.tgz#0e0648d551a606ef2192a26da4cabafcc09c1aa7"
+  integrity sha512-7ZEao1g4kd68l97aWG/etQKPKq07us0ieSZ2TnFDk11i0ZfDW2AwKHYU8qv4MZKqN2fdBfg+7q0ES06UA73C1g==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
@@ -179,7 +179,7 @@ vue@^3.3.4:
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
 
-vuetify@3.3.16:
-  version "3.3.16"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.3.16.tgz#b51a6f304a9cec8e997a3cf505314bf5eaa9ad3a"
-  integrity sha512-vVfUroT5lSU+yOZAf7JlGm2j3dCR4BQml8Al27+/Uh0YW+97/CyUqOzo6IzMCt/bXLvnRerJ5fCAJtQYWnwfLA==
+vuetify@3.3.19:
+  version "3.3.19"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.3.19.tgz#cd27f38c226a9f0faa5cdc163b1a7709f0c75a12"
+  integrity sha512-6/byccc79pq2LmveSgte/AXqyEXkq3aFMxKMwoizsDzDPH4vz/44wRx0+TxhiDk4+n8WOhMa2VlXq1xsJIi1HA==
