@@ -1,29 +1,29 @@
 <template>
-<v-snackbar v-model="hasSnackbar"
-            class="jet-app-snackbar"
-            location="bottom"
-            dark
-            :color="args.color"
-            :timeout="args.timeout">
-        <div v-html="args.text"></div>
-        <div class="jet-app-snackbar__btn"
-             v-if="args.click">
-            <v-btn size="small"
-                   :color="args.color"
-                   v-on:click="args.show = false; args.click(true);"
-                   v-html="args.click_title || 'OK'">
-            </v-btn>
-        </div>
-        <v-btn size="x-small"
-               class="jet-app-snackbar__close"
-               dark 
-               icon
-               fab
-               :color="args.color" 
-               v-on:click="hasSnackbar=false">
-            <v-icon small>mdi-close</v-icon>
-        </v-btn>
-</v-snackbar>
+    <teleport to="body">
+        <v-snackbar v-model="hasSnackbar"
+                    class="jet-app-snackbar"
+                    location="bottom"
+                    dark
+                    multi-line
+                    :color="args.color"
+                    :timeout="args.timeout">
+                <div v-html="args.text"></div>
+                <div class="jet-app-snackbar__btn"
+                     v-if="args.click">
+                    <v-btn size="small"
+                           :color="args.color"
+                           v-on:click.stop="args.show = false; args.click(true);"
+                           v-html="args.click_title || 'OK'">
+                    </v-btn>
+                </div>
+                <v-btn size="x-small"
+                       icon="mdi-close"
+                       class="jet-app-snackbar__close"
+                       :color="args.color"
+                       v-on:click.stop.prevent="hasSnackbar = false">
+                </v-btn>
+        </v-snackbar>
+    </teleport>    
 </template>
 <script>
 import { ref } from "vue";

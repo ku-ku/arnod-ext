@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
-    "@maskito/core": "^1.2.0",
-    "@maskito/kit": "^1.2.0",
-    "@mdi/font": "7.2.96",
-    "jquery": "^3.7.0",
+    "@maskito/core": "^1.7.0",
+    "@maskito/kit": "^1.7.0",
+    "@mdi/font": "7.3.67",
+    "jquery": "^3.7.1",
     "moment": "^2.29.4",
     "vue": "^3.3.4",
     "vuetify": "3.3.20"

@@ -1,0 +1,29 @@
+.jet-input{
+    &.required {
+        & .v-label{
+            padding-left: 0.75rem;
+            &::after{
+                position: absolute;
+                top: 0;
+                left: 0rem;
+                content: "*";
+                color: #d50000;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+/* Thining scrollbar */
+.v-card{
+    &-text{
+        scrollbar-width: thin;
+    }
+    &-text::-webkit-scrollbar{
+        width: 6px;
+    }
+    &-text::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, .18);
+        outline: 1px solid slategrey;
+    }
+}

@@ -1,6 +1,7 @@
 <template>
     <v-text-field :label="label"
                   variant="underlined"
+                  density="compact"
                   ref="input"
                   :error="!valid"
                   :readonly="disabled"
@@ -10,7 +11,7 @@
                   validate-on="blur"
                   :clearable="!disabled"
                   v-show="visible"
-                  v-bind:class="{timed: timed, required: required}">
+                  v-bind:class="{'jet-input': true, timed: timed, required: required}">
         <template v-slot:append>
             <v-menu :close-on-content-click="false"
                     close-delay="350"
@@ -48,6 +49,8 @@ import {Maskito} from '@maskito/core';
 import {maskitoDateOptionsGenerator, maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 
 import { empty } from "../../utils";
+import moment from "moment";
+moment.locale("ru");
 
 export default {
     name: "JetInputDate",
@@ -63,36 +66,41 @@ export default {
               _s    = ref(null),
               timed = /(time)+$/i.test(props.type),
               format= timed ? "DD.MM.YYYY, HH:mm" : "DD.MM.YYYY";
-              
         const _retest = timed ? /^(\d{2}\.\d{2}\.\d{4})+\,?\s(\d{2}:\d{2})+$/ : /^(\d{2}\.\d{2}\.\d{4})+/;
-        
-        watch(date, ()=>{
-            if (date.value){
-                _s.value = $moment(date.value).format(format);
-                if (typeof date.value === "string"){
-                    date.value = $moment(date.value).toDate();
+
+                
+        watch(date, (val, oldVal)=>{
+            if (val){
+                _s.value = moment(val).format(format);
+                if (
+                        (typeof val === "string")
+                     || (val instanceof String)
+                   ) {
+                    date.value = moment(val).toDate();
                 }
+            } else {
+                _s.value = null;
             }
         });
         
         const text = computed({
                         get(){
                             if (date.value){
-                                const m = $moment(date.value);
+                                const m = moment(date.value);
                                 return m.isValid() ? m.format(format) : _s.value;
                             }
                             return _s.value;
                         },
                         set(val){
                             console.log('Dt set text', val);
-                            _s.value = val?.value ? val.value : val;
+                            _s.value = val?.value || val;
                             const _empty = empty(_s.value);
                             if ( _empty ){
                                 emit('update:modelValue', null);
                                 return;
                             }
                             
-                            const m = _retest.test(_s.value) ? $moment(_s.value, format) : $moment.invalid();
+                            const m = _retest.test(_s.value) ? moment(_s.value, format) : moment.invalid();
                             valid.value = m.isValid();
                             if ( valid.value ){
                                 emit('update:modelValue', m.toDate() );
@@ -140,7 +148,7 @@ export default {
     computed: {
         rules(){
             const res = [
-                val => (!!val) && $moment(val, this.format).isValid() || `Введите корректную дату ${ this.format.toLowerCase() }`
+                val => (!this.date)||moment(this.date).isValid() || `Введите корректную дату ${ this.format.toLowerCase() }`
             ];
             if ( this.required ){
                 res.push(val => !empty(val) || "Это поле должно быть заполнено");
@@ -152,15 +160,26 @@ export default {
          */
         picker: {
             get(){
-                return [ this.date ?? new Date() ];
+                const m = moment(this.date);
+                return m.isValid() ? m.toDate() : undefined;
             },
             set(val){
-                if (typeof val === "undefined"){ //bug
+                console.log('set from picker', val);
+/*                
+                if (
+                        (!this.menu)                    //only picker showing
+                     || (typeof val === "undefined")    //bug
+                   ){    
                     return;
                 }
+*/                        
+                if (typeof val === "undefined") {    //bug
+                    return;
+                }
+                this.menu = false;
                 var val = (val) && Array.isArray(val) && (val.length > 0) ? val[0] : val;
                 this.$emit('update:modelValue', val);
-                this.$nextTick(()=>{ this.menu = false; });
+                this.$refs["input"].resetValidation();
             }
         }
     },
@@ -168,14 +187,21 @@ export default {
         reset(){
             this.text = null;
             this.valid = true;
+            this.resetValidation();
         },
         resetValidation(){
             this.$refs["input"].resetValidation();
         },
-        change(newVal){
-            console.log('changing', newVal);
-            const m = $moment(newVal);
+        change(val){
+            //TODO: nax?
+            console.log('changing', val);
+            var val = (val) && Array.isArray(val) && (val.length > 0) ? val[0] : val;
+            this.$emit('update:modelValue', val);
+/*            
+            const m = moment(newVal);
             this.text = m.isValid() ? m.format(this.format) : null;
+* 
+*/
         }
     }
 };

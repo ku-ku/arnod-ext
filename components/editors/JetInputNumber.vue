@@ -1,9 +1,11 @@
 <template>
     <v-text-field class="jet-input jet-input-num"
                   v-bind:class="{required: required}"
+                  density="compact"
                   :readonly="disabled"
                   v-show="visible"
                   :label="label"
+                  :rules="rules"
                   v-model="num">
     </v-text-field>
 </template>
@@ -40,12 +42,16 @@ export default {
                 this.valid = this.required ? (typeof n !== "undefined") : true;
                 this.$emit('update:modelValue', val);
             }
+        },
+        rules(){
+            let res = [];
+            if ( this.required ){
+                res.push(val => !( (val===undefined) || (val===null) || Number.isNaN(val) ) || "Необходимо заполнить");
+            }
+            return res;
         }
     },
     mounted(){
-        if (this.required){
-            this.rules.push( val => !( empty(val) || Number.isNaN(val) ) || "Необходимо заполнить");
-        }
         this.$nextTick(()=>{
             let opts = {
                         decimalSeparator: '.',

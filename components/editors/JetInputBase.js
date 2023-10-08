@@ -1,3 +1,5 @@
+import { empty } from "../../utils";
+
 /**
  * 
  * @type JetInputBase for extending other`s editors
@@ -67,7 +69,11 @@ export const JetInputBase = {
                         : 'unknown';
         },
         rules(){
-            return [];
+            let res = [];
+            if ( this.required ){
+                res.push(val => !empty(val) || "Это поле должно быть заполнено");
+            }
+            return res;
         }
     },
     methods: {
