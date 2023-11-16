@@ -8,8 +8,8 @@
     "@mdi/font": "7.3.67",
     "jquery": "^3.7.1",
     "moment": "^2.29.4",
-    "vue": "^3.3.4",
-    "vuetify": "3.3.21"
+    "vue": "^3.3.7",
+    "vuetify": "^3.4.0"
   },
   "devDependencies": {},
   "description": "app extension",

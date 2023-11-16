@@ -23,7 +23,7 @@
                         </v-card-title>
                         <v-card-text>
                             <v-text-field
-                                label="Телефон"
+                                label="Телефон/логин"
                                 clearable
                                 v-model="user.tel"
                                 name="tel"
@@ -35,17 +35,20 @@
                                 autocomplete="on"
                                 validate-on="blur"
                                 v-on:update:modelValue="ontel">
-                                <template v-slot:prepend-inner>
+                                <template v-slot:prepend-inner v-if="has('login')">
+                                    <v-icon>mdi-account-outline</v-icon>
+                                </template>
+                                <template v-slot:prepend-inner v-else>
                                     <v-icon>mdi-cellphone</v-icon>(+7)
                                 </template>
                             </v-text-field>
                             <v-expand-transition>
                                 <v-text-field
-                                    label="Код"
+                                    :label="has('login') ? 'Пароль' : 'Код'"
                                     type="password"
                                     :rules="[rules.empty]"
                                     name="code"
-                                    v-show="has('id')"
+                                    v-show="has('id')||has('login')"
                                     v-model="user.code"
                                     autocomplete="current-password"
                                     prepend-inner-icon="mdi-asterisk">
@@ -101,7 +104,8 @@ const USER_DEFS = {
 };
 
 const rules = {
-    empty: val => !empty(val) || "Необходимо заполнить"
+    empty: val => !empty(val) || "Необходимо заполнить",
+    login: val => /^\S+@\S+$/.test(val)
 };
 
 export default {
@@ -130,7 +134,11 @@ export default {
                     resolve(user.value.id);
                     return;
                 }
-                if ( empty(user.value.tel) || (user.value.tel?.length < 10) ){
+                if ( 
+                        empty(user.value.tel) 
+                     || (user.value.tel?.length < 10) 
+                     || rules.login(user.value.tel) 
+                  ){
                     resolve(-1);
                     return;
                 }
@@ -146,6 +154,9 @@ export default {
                     }
                 }).catch(e => {
                     pending.value = false;
+                    if ($jet.api.$errm){
+                        e.message += ' | ' + $jet.api.$errm;
+                    }
                     reject(e);
                 });
             });
@@ -180,7 +191,9 @@ export default {
         has( q ) {
             switch(q){
                 case 'id':
-                    return (this.user.id || 0) > 0; 
+                    return (this.user.id || 0) > 0;
+                case 'login':
+                    return rules.login(this.user.tel);
                 case 'subject':
                     return !empty(this.subject?.token);
                 case 'user':
@@ -191,9 +204,13 @@ export default {
             return false;
         },  //has
         async ontel(){
-            if ( this.user.tel?.length < 10 ){
+            if (
+                    ( this.user.tel?.length < 10 )
+                  ||( this.has('login') )
+               ) {
                 return;
-            } 
+            }
+            
             this.error = null;
             this.user.id = -1;
             try {

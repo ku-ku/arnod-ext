@@ -1,5 +1,6 @@
 import { reactive, computed } from "vue";
 import { empty } from "../utils";
+import * as olSphere from 'ol/sphere';
 
 let hTimer = null;
 
@@ -54,5 +55,48 @@ export const geo = reactive({
             }, 300*1000);
         }
         _watch(clbk);
-    }
+    },
+    async current(){
+        return new Promise((resolve, reject)=>{
+            _watch( e => {
+                if (e.error){
+                    reject(e.error);
+                } else {
+                    resolve(e);
+                }
+            });
+        });
+    },
+    async addr(ll){
+        return new Promise( (resolve, reject) => {
+            if ( 
+                    (!!ll)
+                 && (Number(ll.latitude) != 0)
+                 && (Number(ll.longitude) != 0)
+               ){
+                $.getJSON(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${ ll.latitude }&lon=${ ll.longitude }&zoom=18&addressdetails=1`)
+                        .then(res => {
+                            resolve(res);
+                        })
+                        .catch(e => {
+                            reject(e);
+                        });
+            } else {
+                reject({message: 'no-coords'});
+            }
+        });
+    },   //addr
+    distance(ll1, ll2){
+        /**shorting*/
+        if (ll1.latitude){
+            ll1.lat = ll1.latitude;
+            ll1.lon = ll1.longitude;
+        }
+        /**shorting*/
+        if (ll2.latitude){
+            ll2.lat = ll2.latitude;
+            ll2.lon = ll2.longitude;
+        }
+        return olSphere.getDistance(ll1, ll2);
+    }   //distance
 });

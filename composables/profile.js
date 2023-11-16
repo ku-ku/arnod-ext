@@ -98,16 +98,29 @@ export const checktel = async tel => {
 
 export const auth = async user => {
     return new Promise(async (resolve, reject) => {
+        let res;
         try {
             await logout();
-            let res = await api({
-                url: '/mobile/driver/auth/confirm/code',
-                method: 'POST',
-                body: {
-                        code: user.code,
-                        user_id: user.id
-                }
-            });
+            
+            if (/^\S+@\S+$/.test(user.tel) ){  //by login/passw
+                res = await api({
+                    url: '/auth/login/email',
+                    method: 'POST',
+                    body: {
+                            email: user.tel,    //гы
+                            password: user.code
+                    }
+                });
+            } else {                                //by tel/code
+                res = await api({
+                    url: '/mobile/driver/auth/confirm/code',
+                    method: 'POST',
+                    body: {
+                            code: user.code,
+                            user_id: user.id
+                    }
+                });
+            }
 
             if (!res.success){
                 throw res.error;

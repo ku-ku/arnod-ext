@@ -8,14 +8,16 @@
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+/*
 import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader';
 import { VDatePicker } from 'vuetify/labs/VDatePicker';
 import { VDataTable, VDataTableServer } from 'vuetify/labs/VDataTable';
+import { VuetifyDateAdapter } from 'vuetify/locale/adapters/vuetify';
+*/
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { settings, read as settingsRead } from "./composables/settings.js";
 import { profile } from "./composables/profile.js";
 import { en, ru } from 'vuetify/locale';
-import { VuetifyDateAdapter } from 'vuetify/labs/date/adapters/vuetify';
 import { appMsgArgs } from "./components/AppMsg.vue";
 import moment from "moment";
 moment.locale("ru");
@@ -38,36 +40,10 @@ import { api } from "./http";
  * @params {nuxtApp} app - nuxt context
  */
 export default async function( app ){
-
-    /**
-     * Vuetify init
-     */
-    const vuetify = createVuetify({
-        ssr: false,
-        locale: {
-            locale: 'ru',
-            fallback: 'en',
-            messages: { ru, en }
-        },
-        date: {
-            adapter: VuetifyDateAdapter
-        },
-        components: {
-                    ...components, 
-                    VSkeletonLoader,
-                    VDatePicker,
-                    VDataTable,
-                    VDataTableServer
-        },
-        directives,
-        defaults: {
-            VTextField: { variant: "underlined" },
-            VCombobox: { variant: "underlined" },
-            VAutocomplete: { variant: "underlined" },
-            VTextarea: { variant: "underlined" },
-        },
-        options: { customProperties: true },
-        theme: {
+        
+    const config = useRuntimeConfig();
+    
+    const theme = config.public.theme || {
             defaultTheme: 'light',
             themes: {
                 dark: {
@@ -80,7 +56,31 @@ export default async function( app ){
                     }
                 }
             }
+    };
+
+    /**
+     * Vuetify init
+     */
+    const vuetify = createVuetify({
+        ssr: false,
+        locale: {
+            locale: 'ru',
+            fallback: 'en',
+            messages: { ru, en }
         },
+        date: {
+            //adapter: VuetifyDateAdapter
+        },
+        components,
+        directives,
+        defaults: {
+            VTextField: { variant: "underlined" },
+            VCombobox: { variant: "underlined" },
+            VAutocomplete: { variant: "underlined" },
+            VTextarea: { variant: "underlined" },
+        },
+        options: { customProperties: true },
+        theme,
         icons: {
             defaultSet: 'mdi',
             aliases,
@@ -129,8 +129,6 @@ export default async function( app ){
             }
         }
     };
-    
-    const config = useRuntimeConfig();
     
     /**
      * Networking

@@ -40,6 +40,16 @@ const date2php = (d, timed = false) => {
     return (d === null) ? null : $moment(d).format(timed ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
 };
 
+const _formatter = new Intl.NumberFormat("ru-RU", {minimumFractionDigits: 2}),
+      currformat = n => {
+            if ( n ){
+                var n = Number(n);
+                return Number.isNaN(n) ? '' : _formatter.format(n);
+            }
+            return '';
+};
+
+    
 
 export {
     NULL_ID,
@@ -47,5 +57,6 @@ export {
     MONTHS,
     empty,
     date2php,
-    phpdate2m
+    phpdate2m,
+    currformat
 }
