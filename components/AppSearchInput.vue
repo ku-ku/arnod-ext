@@ -5,6 +5,7 @@
         <v-text-field density="compact"
                       :hint="hint"
                       :loading="loading"
+                      :hide-details="hideDetails"
                       clearable
                       clear-icon="mdi-close"
                       color="primary"
@@ -36,6 +37,11 @@ export default {
             default: 'mdi-magnify'
         },
         loading: {
+            type: Boolean,
+            required: false,
+            default: false
+        },
+        "hide-details": {
             type: Boolean,
             required: false,
             default: false

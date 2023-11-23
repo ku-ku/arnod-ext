@@ -86,7 +86,12 @@ export const geo = reactive({
             }
         });
     },   //addr
+    /**
+     * @param {Object} ll1 - coords at {lat,lon}
+     * @param {Object|undefined} ll2 - coords to {lat,lon} (undefined - using current)
+     */
     distance(ll1, ll2){
+        var ll2 = !!ll2 ? ll2 : geo.coords;
         /**shorting*/
         if (ll1.latitude){
             ll1.lat = ll1.latitude;
@@ -97,6 +102,6 @@ export const geo = reactive({
             ll2.lat = ll2.latitude;
             ll2.lon = ll2.longitude;
         }
-        return olSphere.getDistance(ll1, ll2);
+        return olSphere.getDistance([ll1.lon, ll1.lat], [ll2.lon, ll2.lat]);
     }   //distance
 });

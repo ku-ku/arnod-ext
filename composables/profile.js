@@ -38,7 +38,12 @@ export const preauth = async () => {
                 at = settings.local.token;
             }
             
-            if ( !at ){
+            console.log('pre by at', at);
+            
+            if (
+                    ( !at )
+                 || ('bad' == at.access)
+               ){
                 reject({message: 'No access'});
             } else {
                 try {

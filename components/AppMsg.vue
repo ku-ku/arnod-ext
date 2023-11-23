@@ -7,6 +7,15 @@
                     multi-line
                     :color="args.color"
                     :timeout="args.timeout">
+                <div class="text-right">
+                    <v-btn size="x-small"
+                           append-icon="mdi-close"
+                           class="ml-auto jet-app-snackbar__close"
+                           v-on:click.stop.prevent="hasSnackbar = false"
+                           variant="text"
+                           text="закрыть">
+                    </v-btn>
+                </div>    
                 <div v-html="args.text"></div>
                 <div class="jet-app-snackbar__btn"
                      v-if="args.click">
@@ -16,20 +25,14 @@
                            v-html="args.click_title || 'OK'">
                     </v-btn>
                 </div>
-                <v-btn size="x-small"
-                       icon="mdi-close"
-                       class="jet-app-snackbar__close"
-                       :color="args.color"
-                       v-on:click.stop.prevent="hasSnackbar = false">
-                </v-btn>
         </v-snackbar>
-    </teleport>    
+    </teleport>
 </template>
 <script>
 import { ref } from "vue";
 
 const _MSG_DEFS = {
-    color: "primary",
+    color: "transparent",
     timeout: 6000,
     text: null,
     click: undefined,
@@ -77,13 +80,17 @@ export default {
             text-align: right;
         }
         & .v-btn.jet-app-snackbar__close{
-            position: absolute;
+            margin-top: -16px;
+            margin-right: -16px;
+/*            
             top: -14px;
             right: -12px;
             color: #f2f2f2;
             background: #f2f2f2;
             border: 1px solid #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+            z-index: 999999;
+*/            
         }
     }
 </style>

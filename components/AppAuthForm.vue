@@ -62,7 +62,7 @@
                                 <div v-html="error"></div>
                             </v-alert>
                         </v-card-text>
-                        <v-card-actions>
+                        <v-card-actions class="flex-wrap">
                             <v-btn variant="flat"
                                    prepend-icon="mdi-chevron-left"
                                    color="transparent"
@@ -79,6 +79,16 @@
                                 </template>
                                 <template v-else>войти</template>
                             </v-btn>
+                            <div v-if="canRegistry" 
+                                 class="jet-auth__registry">
+                                Если у Вас еще нет аккаунта, Вы можете зарегистрироваться<br />
+                                <div class="text-center mt-3">
+                                    <v-btn variant="text"
+                                           v-on:click="$emit('registry')">
+                                        регистрация
+                                    </v-btn>
+                                </div>    
+                            </div>
                         </v-card-actions>
                         <v-footer>
                             <v-spacer />
@@ -110,6 +120,13 @@ const rules = {
 
 export default {
     name: "AppAuthForm",
+    props: {
+        "can-registry": {
+            type: Boolean,
+            required: false,
+            default: false
+        }
+    },
     async setup(props, { emit }){
         let pending = ref(true);
         const user = ref({...USER_DEFS});
@@ -168,7 +185,7 @@ export default {
             error
         };
     },
-    emits: ['auth', 'error'],
+    emits: ['auth', 'error', 'registry'],
     data(){
         return {
             rules
@@ -349,8 +366,13 @@ export default {
                 background: transparent;
             }   /* .v-footer */
         }       /* __conte */
+        &__registry{
+            margin: 1rem auto;
+            font-size: 0.9rem;
+            line-height: 1.125;
+            & .v-btn {
+            }
+        }
     }           /* .jet-auth */
     
 </style>
-
-

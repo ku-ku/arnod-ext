@@ -2,7 +2,7 @@
     <v-text-field class="jet-input jet-input-string" 
                   v-bind:class="{required: required}"
                   v-show="visible"
-                  type="text"
+                  :type="type || 'text'"
                   :disabled="disabled"
                   :rules="rules"
                   :label="label"

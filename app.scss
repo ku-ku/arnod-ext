@@ -1,3 +1,9 @@
+.v-badge.empty {
+    & .v-badge__badge{
+        display: none !important;
+    }
+}
+
 .jet-input{
     &.required {
         & .v-label{
