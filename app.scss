@@ -33,3 +33,91 @@
         outline: 1px solid slategrey;
     }
 }
+
+.v-data-table {
+    $border-color: #d5cdb5;
+    &.v-table--fixed-header > .v-table__wrapper > table > thead{
+        z-index: 9;
+    }
+    & table {
+        font-size: 0.85rem;
+        line-height: 1.125;
+        & tr {
+            & > th{
+                font-weight: 600 !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 1.125;
+                background-color: #efefef !important;
+                border-left-color: transparent;
+                border-top: 1px solid #fefefe;
+                border-bottom: 1px dotted $border-color !important;
+                border-right: 1px dotted $border-color !important;
+                text-align: left !important;
+                vertical-align: middle;
+                color: #0a0a0a;
+                
+            }
+            & > td {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                border-right: 1px dotted $border-color !important;
+                &.v-data-table-column--fixed{
+                    background-color: #fff !important;
+                    z-index: 1;
+                }
+                & .v-chip{
+                    --v-chip-size: 0.65rem;
+                    --v-chip-height: 0;
+                    padding: 0.25rem 0.5rem;
+                    font-size: 0.85rem;
+                    border-radius: 4px;
+                    line-height: 1.115;
+                }
+                & a{
+                    color: unset;
+                }
+            }
+            
+            &.ar-bad{
+                & > td {
+                    background-color: #FFFDE7 !important; /* yellow-lighten-5*/
+                }
+            }
+        }
+    }
+    &__selected{
+        & td{
+            background: #FFFDE7 !important;
+            border-bottom: 1px solid #FFB300 !important;
+        }
+    }
+    &-footer{
+        font-size: 0.75rem;
+        & .v-input--density-compact{
+            --v-input-control-height: 22px !important;
+            --v-input-padding-top: 0 !important;
+        }
+        & .v-field{ 
+            --v-field-padding-top: 2px !important;
+            --v-field-padding-bottom: 2px !important;
+            font-size: 11px;
+        }
+        &__pagination{
+            & .v-btn--icon.v-btn--size-default {
+                width: 28px;
+                height: 28px;
+                & .v-icon{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    &.no-footer{
+        .v-data-table-footer{
+            display: none;
+        }
+    }
+}
