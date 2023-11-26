@@ -47,8 +47,10 @@ export const preauth = async () => {
                 reject({message: 'No access'});
             } else {
                 try {
+                    const {public: config} = useRuntimeConfig();
+                    const url = config.selfUrl || '/mobile/driver/auth/self';
                     const res = await api({
-                        url: '/mobile/driver/auth/self',
+                        url,
                         headers: {
                             "X-Auth-Token": at
                         }
@@ -83,13 +85,13 @@ export const preauth = async () => {
     
 };  //preauth
 
-export const checktel = async tel => {
-    const res = await api({
-                    url: '/mobile/driver/auth/login/phone',
+export const checktel = async phone => {
+    const {public: config} = useRuntimeConfig();
+    const url = config.auUrl || '/mobile/driver/auth/login/phone';
+    let res = await api({
+                    url,
                     method: 'POST',
-                    body: {
-                            phone: tel
-                    }
+                    body: { phone }
                 });
     if ( res.success ){
         let s = (profile.subject?.id!==res.result.user_id) 
@@ -98,7 +100,7 @@ export const checktel = async tel => {
         profile.subject = s;
     }
     return res;
-}
+};  //checktel
 
 
 export const auth = async user => {
@@ -117,8 +119,10 @@ export const auth = async user => {
                     }
                 });
             } else {                                //by tel/code
+                const {public: config} = useRuntimeConfig();
+                const url = config.codeUrl || '/mobile/driver/auth/confirm/code';
                 res = await api({
-                    url: '/mobile/driver/auth/confirm/code',
+                    url,
                     method: 'POST',
                     body: {
                             code: user.code,
@@ -133,9 +137,11 @@ export const auth = async user => {
 
             let data = res.result;
             if ( data ) {
+                const {public: config} = useRuntimeConfig();
+                const url = config.selfUrl || '/mobile/driver/auth/self';
                 user.token = data.token
                 res = await api({
-                    url: '/mobile/driver/auth/self',
+                    url,
                     headers: {
                         "X-Auth-Token": user.token
                     }
