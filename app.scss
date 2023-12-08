@@ -79,6 +79,9 @@
                 & a{
                     color: unset;
                 }
+                & .v-icon {
+                    font-size: 1rem;
+                }
             }
             
             &.ar-bad{
@@ -104,6 +107,9 @@
             --v-field-padding-top: 2px !important;
             --v-field-padding-bottom: 2px !important;
             font-size: 11px;
+            &__field{
+                align-items: center;
+            }
         }
         &__pagination{
             & .v-btn--icon.v-btn--size-default {
@@ -121,3 +127,4 @@
         }
     }
 }
+

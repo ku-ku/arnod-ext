@@ -2,7 +2,6 @@
     <teleport to="body">
         <v-snackbar v-model="hasSnackbar"
                     class="jet-app-snackbar"
-                    location="bottom"
                     dark
                     multi-line
                     :color="args.color"
@@ -21,7 +20,7 @@
                      v-if="args.click">
                     <v-btn size="small"
                            :color="args.color"
-                           v-on:click.stop="args.show = false; args.click(true);"
+                           v-on:click.stop.prevent="args.show = false; args.click(true);"
                            v-html="args.click_title || 'OK'">
                     </v-btn>
                 </div>

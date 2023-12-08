@@ -72,30 +72,22 @@ const _ping = ()=>{
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
     
-    const _check = res => {
+    const url = `${ env.api }${env.selfUrl || '/mobile/driver/auth/self'}`;
+    
+    fetch(url, {
+        signal: controller.signal,
+        headers: toks
+    }).then( res => {
         clearTimeout(timeoutId);
         if (!res.ok) {
             throw new Error("Network response was not OK");
         }
-    };  //_check
-    /**
-     * Two phase checking auth-self
-     */
-    fetch(`${ env.api }/mobile/driver/auth/self`, {
-        signal: controller.signal,
-        headers: toks
-    }).then( _check ).catch( error => {
+    }).catch( error => {
         console.log('ERR (self)', error);
-        fetch(`${ env.api }/auth/self`, {
-            signal: controller.signal,
-            headers: toks
-        }).then( _check )
-          .catch( error => {
-                postMessage({
-                    type: "lost",
-                    error
-                });
-            });
+        postMessage({
+            type: "lost",
+            error
+        });
     });
 };
 
