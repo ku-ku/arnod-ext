@@ -5,7 +5,8 @@
                     dark
                     multi-line
                     :color="args.color"
-                    :timeout="args.timeout">
+                    :timeout="args.timeout"
+                    :location="args.location">
                 <div class="text-right">
                     <v-btn size="x-small"
                            append-icon="mdi-close"
@@ -36,7 +37,8 @@ const _MSG_DEFS = {
     text: null,
     click: undefined,
     show: false,
-    click_title: undefined
+    click_title: undefined,
+    location: 'bottom'
 };
 
 
@@ -57,7 +59,7 @@ export default {
                     if (this.args.click){
                         this.args.click(false);
                     }
-                    appMsgArgs.value = { ..._MSG_DEFS };
+                    appMsgArgs.value.show = false;
                 } 
             }
         }

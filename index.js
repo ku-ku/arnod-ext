@@ -8,12 +8,6 @@
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
-/*
-import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader';
-import { VDatePicker } from 'vuetify/labs/VDatePicker';
-import { VDataTable, VDataTableServer } from 'vuetify/labs/VDataTable';
-import { VuetifyDateAdapter } from 'vuetify/locale/adapters/vuetify';
-*/
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { settings, read as settingsRead } from "./composables/settings.js";
 import { profile } from "./composables/profile.js";
@@ -110,7 +104,7 @@ export default async function( app ){
                         (typeof msg.text !== "undefined") 
                      && !/^$/.test(msg.text)
                     ) ? (new Date()).getTime() : false;
-            appMsgArgs.value = msg;
+        appMsgArgs.value = msg;
     };
     
     /**

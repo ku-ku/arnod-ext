@@ -45,6 +45,10 @@ export default {
             type: Boolean,
             required: false,
             default: false
+        },
+        value: {
+            type: String,
+            required: false
         }
     },
     emits: ["search"],
@@ -72,6 +76,11 @@ export default {
             } else {
                 hTimer = setTimeout(()=>{ this.$emit("search", s); }, 2700);
             }
+        }
+    },
+    watch: {
+        value(val){
+            this.s = val;
         }
     }
 }
