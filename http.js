@@ -46,6 +46,14 @@ export function api(opts){
     };
     api.$errm = undefined;
     
+    if ( /(this)+/.test(url) ){
+        url = url.replace(/(this)+/, window.location.hostname);
+        /* rm port for local ip */
+        if ( /(\:\/\/192\.)+/.test(url) ){
+            url = url.replace(/(:\d{2,5})+/g, '');
+        }
+    }
+    
     return $fetch(url, opts);
 }   //api
 

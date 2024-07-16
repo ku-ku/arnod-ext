@@ -46,7 +46,7 @@ export default async function( app ){
                 },
                 light: {
                     colors: {
-                        primary: "#4caf50"  /*green*/
+                        primary: "#00695C"  /*2c7873 4caf50 green*/
                     }
                 }
             }

@@ -57,7 +57,13 @@
                 text-align: left !important;
                 vertical-align: middle;
                 color: #0a0a0a;
-                
+                &.v-data-table-column--align-end{
+                    text-align: unset;
+                }
+                & .v-data-table-header__content{
+                    flex-direction: initial !important;
+                    text-align: left !important;
+                }
             }
             & > td {
                 white-space: nowrap;
